@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IegTools.FluentPollster", "src\IegTools.FluentPollster\IegTools.FluentPollster.csproj", "{AAE80BDB-C276-4582-B34B-3C4C4AED557F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests.FluentPollster", "tests\IntegrationTests.FluentPollster\IntegrationTests.FluentPollster.csproj", "{7156A695-67A3-4C5E-A14C-E4E90FBBCE7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAE80BDB-C276-4582-B34B-3C4C4AED557F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE80BDB-C276-4582-B34B-3C4C4AED557F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE80BDB-C276-4582-B34B-3C4C4AED557F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE80BDB-C276-4582-B34B-3C4C4AED557F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7156A695-67A3-4C5E-A14C-E4E90FBBCE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7156A695-67A3-4C5E-A14C-E4E90FBBCE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7156A695-67A3-4C5E-A14C-E4E90FBBCE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7156A695-67A3-4C5E-A14C-E4E90FBBCE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F428F1B2-F7A8-48AB-9DA9-81E18EE0B69B}
+	EndGlobalSection
+EndGlobal
