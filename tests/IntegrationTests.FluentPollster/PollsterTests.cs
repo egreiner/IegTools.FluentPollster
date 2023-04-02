@@ -6,7 +6,35 @@ using Tools;
 public class PollsterTests
 {
     [Fact]
-    public void Test_Run_counter_is_1()
+    public void Test_Run_once()
+    {
+        var counter = 0;
+        var uut = PollsterBuilder.Create()
+            .AddJob(() => counter++, TimeSpan.FromMilliseconds(100));
+
+        var pollster = uut.Build();
+
+        pollster.Run();
+
+        counter.Should().Be(1);
+    }
+
+    [Fact]
+    public void Test_Run_job_condition_is_false()
+    {
+        var counter = 0;
+        var uut = PollsterBuilder.Create()
+            .AddJob(() => counter++, TimeSpan.FromMilliseconds(100), () => false);
+
+        var pollster = uut.Build();
+
+        pollster.Run();
+
+        counter.Should().Be(0);
+    }
+
+    [Fact]
+    public void Test_Run_multiple_times_counter_is_1()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
@@ -24,7 +52,7 @@ public class PollsterTests
     }
 
     [Fact]
-    public void Test_Run_counter_is_20()
+    public void Test_Run_multiple_times_counter_is_20()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
@@ -42,7 +70,7 @@ public class PollsterTests
     }
     
     [Fact]
-    public void Test_Run_counter_is_2()
+    public void Test_Run_multiple_times_counter_is_2()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
