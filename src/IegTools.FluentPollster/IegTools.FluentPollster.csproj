@@ -1,9 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	  <TargetFramework>net7.0</TargetFramework>
+	  <LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<RepositoryUrl>https://github.com/egreiner/IegTools.FluentPollster</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/egreiner/IegTools.FluentPollster</PackageProjectUrl>
+		<PackageReadme>https://github.com/egreiner/IegTools.FluentPollster/blob/master/README.md</PackageReadme>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
+
+		<PackageId>IegTools.FluentPollster</PackageId>
+		<Title>IegTools.FluentPollster</Title>
+		<Version>1.0.0-beta.1</Version>
+
+		<Company>ieg Systems</Company>
+		<Authors>Ing. Ernst Greiner</Authors>
+		<Copyright>(c) 2023 ieg Systems - Ing. Ernst Greiner</Copyright>
+
+	  <Description>
+		  IegTools.FluentPollster provides a fluent interface for creating easy-to-read polling jobs.
+	  </Description>
+
+	  <PackageReleaseNotes>
+		  Initial NuGet Package
+	  </PackageReleaseNotes>
+
+	  <PackageTags>polling</PackageTags>
+		
+	  <NeutralLanguage>en</NeutralLanguage>
+	  <RepositoryType>git</RepositoryType>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
   </PropertyGroup>
 
   <ItemGroup>
