@@ -39,4 +39,21 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>true</Pack>
+			<PackagePath>docs</PackagePath>
+			<Link>README.md</Link>
+		</None>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE.txt">
+			<Pack>true</Pack>
+			<PackagePath>docs</PackagePath>
+			<Link>LICENSE.txt</Link>
+		</None>
+	</ItemGroup>
+
 </Project>
