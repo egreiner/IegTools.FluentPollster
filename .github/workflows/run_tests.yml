@@ -1,0 +1,28 @@
+name: run-tests
+
+on: [workflow_dispatch, push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        dotnet-version: [ '7.0.x' ]
+        os: [ ubuntu-latest ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      
+      - name: 'Install dependencies'
+        run: dotnet restore
+      
+      - name: 'Build project'
+        run: dotnet build --configuration Release --no-restore
+      
+      - name: 'Test project'
+        run: dotnet test --no-restore --verbosity normal
