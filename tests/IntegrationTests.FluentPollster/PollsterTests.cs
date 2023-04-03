@@ -125,7 +125,7 @@ public class PollsterTests
     {
         var counter = 0;
         var pollster = PollsterBuilder.Create()
-            .AddJob(() => counter++, TimeSpan.FromMicroseconds(10)).Build();
+            .AddJob(() => counter++, TimeSpan.FromMilliseconds(9)).Build();
 
         pollster.RunAutomaticEvery(TimeSpan.FromMilliseconds(10));
 
