@@ -5,7 +5,7 @@ FluentPollster provides a user-friendly fluent interface for creating easy-to-re
 
 ## Why another polling library?
 I found that FluentScheduler didn't meet my requirements.  
-I had some ideas and well it's less than 500 loc at the moment, so thats nothing.  
+I had some ideas and well it's less than 500 loc at the moment, so that's nothing.  
 Hey and it's fun.
 
 
@@ -20,16 +20,18 @@ specify the poll-intervall and the condition,
 build the Pollster and run it.  
 
 ```csharp
+private IPollster _pollster;
+
 public void SimplePolling()
 {
     var counter = 0;
     var uut = PollsterBuilder.Create()
         .AddJob(() => counter++, TimeSpan.FromMilliseconds(100), () => HasWhatSoEverCondition());
 
-    var pollster = uut.Build();
+    _pollster = uut.Build();
     
-    // run only once, so the time when you call it belongs to you
-    pollster.Run();
+    // runs only once, so when and how you call it belongs to you
+    _pollster.Run();
 }
 ```
 

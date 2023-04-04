@@ -9,19 +9,21 @@
 		<PackageProjectUrl>https://github.com/egreiner/IegTools.FluentPollster</PackageProjectUrl>
 		<PackageReadme>https://github.com/egreiner/IegTools.FluentPollster/blob/master/README.md</PackageReadme>
 	    <PackageReadmeFile>docs\README.md</PackageReadmeFile>
-		<License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
+	    <PackageLicenseFile>docs\LICENSE.txt</PackageLicenseFile>
+
+	    <License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
 
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
-		<Version>1.0.0-beta.2</Version>
+		<Version>1.0.0-beta.3</Version>
 
 		<Company>ieg Systems</Company>
 		<Authors>Ing. Ernst Greiner</Authors>
 		<Copyright>(c) 2023 ieg Systems - Ing. Ernst Greiner</Copyright>
 
-	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  </Description>
+	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.</Description>
 
-	  <PackageReleaseNotes>NuGet Package with readme.md</PackageReleaseNotes>
+	  <PackageReleaseNotes>NuGet Package with readme.md and License.txt</PackageReleaseNotes>
 
 	  <PackageTags>polling, scheduler</PackageTags>
 		
@@ -34,7 +36,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
   </ItemGroup>
 
