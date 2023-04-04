@@ -8,7 +8,7 @@
 		<RepositoryUrl>https://github.com/egreiner/IegTools.FluentPollster</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/egreiner/IegTools.FluentPollster</PackageProjectUrl>
 		<PackageReadme>https://github.com/egreiner/IegTools.FluentPollster/blob/master/README.md</PackageReadme>
-	    <PackageReadmeFile>README.md</PackageReadmeFile>
+	    <PackageReadmeFile>..\..\README.md</PackageReadmeFile>
 		<License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
 
 		<PackageId>IegTools.FluentPollster</PackageId>
