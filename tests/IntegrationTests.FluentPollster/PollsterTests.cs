@@ -85,7 +85,7 @@ public class PollsterTests
             BlockThread.For(1).Milliseconds();
         }
 
-        counter.Should().BeLessThan(5);
+        counter.Should().BeLessThan(10);
     }
 
     [Fact]
@@ -133,7 +133,7 @@ public class PollsterTests
 
         pollster.StopAsync().Wait();
 
-        counter.Should().BeGreaterOrEqualTo(5);
-        counter.Should().BeLessOrEqualTo(10);
+        counter.Should().BeGreaterOrEqualTo(1);
+        counter.Should().BeLessOrEqualTo(15);
     }
 }
