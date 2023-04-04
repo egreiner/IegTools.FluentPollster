@@ -13,7 +13,7 @@
 
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
-		<Version>1.0.0-beta.1</Version>
+		<Version>1.0.0-beta.2</Version>
 
 		<Company>ieg Systems</Company>
 		<Authors>Ing. Ernst Greiner</Authors>
@@ -24,7 +24,7 @@
 	  </Description>
 
 	  <PackageReleaseNotes>
-		  Initial NuGet Package
+		  NuGet Package with readme.md
 	  </PackageReleaseNotes>
 
 	  <PackageTags>polling</PackageTags>
