@@ -11,8 +11,6 @@
 	    <PackageReadmeFile>docs\README.md</PackageReadmeFile>
 	    <PackageLicenseFile>docs\LICENSE.txt</PackageLicenseFile>
 
-	    <License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
-
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
 		<Version>1.0.0-beta.3</Version>
