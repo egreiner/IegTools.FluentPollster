@@ -8,7 +8,7 @@
 		<RepositoryUrl>https://github.com/egreiner/IegTools.FluentPollster</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/egreiner/IegTools.FluentPollster</PackageProjectUrl>
 		<PackageReadme>https://github.com/egreiner/IegTools.FluentPollster/blob/master/README.md</PackageReadme>
-	    <PackageReadmeFile>bin\Release\Net7.0\README.md</PackageReadmeFile>
+	    <PackageReadmeFile>docs\README.md</PackageReadmeFile>
 		<License>https://github.com/egreiner/IegTools.FluentPollster/blob/master/LICENSE.txt</License>
 
 		<PackageId>IegTools.FluentPollster</PackageId>
@@ -19,13 +19,9 @@
 		<Authors>Ing. Ernst Greiner</Authors>
 		<Copyright>(c) 2023 ieg Systems - Ing. Ernst Greiner</Copyright>
 
-	  <Description>
-		  IegTools.FluentPollster provides a fluent interface for creating easy-to-read polling jobs.
-	  </Description>
+	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  </Description>
 
-	  <PackageReleaseNotes>
-		  NuGet Package with readme.md
-	  </PackageReleaseNotes>
+	  <PackageReleaseNotes>NuGet Package with readme.md</PackageReleaseNotes>
 
 	  <PackageTags>polling, scheduler</PackageTags>
 		
