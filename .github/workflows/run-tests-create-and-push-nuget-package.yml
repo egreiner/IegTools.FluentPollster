@@ -26,7 +26,13 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      
+
+      - name: Setup Nuget
+        uses: Nuget/setup-nuget@v1.0.5
+
+      - name: Restore nuget packages
+        run: nuget restore 'src/IegTools.FluentPollster/IegTools.FluentPollster.csproj'     
+        
       - name: 'Install dependencies'
         run: dotnet restore  ${{ env.PROJECT_PATH }}
       
