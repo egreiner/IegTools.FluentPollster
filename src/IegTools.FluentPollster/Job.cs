@@ -2,10 +2,20 @@
 
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+/// Provides all infos that are needed to execute a poll task
+/// </summary>
 public class Job
 {
     private readonly PollsterConfiguration _configuration;
 
+    /// <summary>
+    /// Define a poll task with a single intervall
+    /// </summary>
+    /// <param name="configuration">The pollster configuration</param>
+    /// <param name="action">The action that should be executed when it's time to poll</param>
+    /// <param name="pollIntervall">The poll intervall</param>
+    /// <param name="condition">The condition when the poll is enabled</param>
     public Job(PollsterConfiguration configuration, Action action, TimeSpan pollIntervall, Func<bool> condition)
     {
         _configuration = configuration;
@@ -13,6 +23,12 @@ public class Job
         Intervalls     = new[] { (pollIntervall, condition) };
     }
 
+    /// <summary>
+    /// Define a pool task with multiple intervalls
+    /// </summary>
+    /// <param name="configuration">The pollster configuration</param>
+    /// <param name="action">The action that should be executed when it's time to poll</param>
+    /// <param name="intervalls">The poll intervalls with there conditions</param>
     public Job(PollsterConfiguration configuration, Action action, IList<(TimeSpan pollIntervall, Func<bool> condition)> intervalls)
     {
         _configuration = configuration;

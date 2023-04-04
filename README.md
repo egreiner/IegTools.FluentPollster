@@ -1,23 +1,23 @@
 # IegTools.FluentPollster
 
-IegTools.FluentPollster provides a fluent interface for creating easy-to-read polling jobs.  
+FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  
 
 
 ## Why 'yet another polling library'?
-FluentScheduler didn't really fit well to my needs.
-I had some ideas and well it's less than 500 loc at the moment, so thats nothing.
+I found that FluentScheduler didn't meet my requirements.  
+I had some ideas and well it's less than 500 loc at the moment, so thats nothing.  
 Hey and it's fun.
 
 
 ## Usage
-To get an overview study the IntegrationTests.
+To get into the details study the IntegrationTests.  
 
 
 ### Simple polling job
 
 You can add any Action as job to the PollsterBuilder,  
-specify the poll-intervall and the condition,
-build the Pollster and run it.
+specify the poll-intervall and the condition,  
+build the Pollster and run it.  
 
 ```csharp
 public void SimplePolling()
@@ -36,8 +36,8 @@ public void SimplePolling()
 ### Automatic polling jobs
 
 You can add any Action as job to the PollsterBuilder,  
-specify the poll-intervall without any condition,
-build the Pollster and run it in automatic-mode.
+specify the poll-intervall (also without any condition),  
+build the Pollster and run it in automatic-mode.  
 
 ```csharp
 public void AutomaticPolling()
@@ -53,8 +53,20 @@ public void AutomaticPolling()
 }
 ```
 
+### Details
+
+#### You can inject an ILogger  
+
+```csharp
+    PollsterBuilder.Create().SetLogger(logger);
+```
 
 
-// TODO to be continued
+#### Set the maximum poll tasks that should be executed during one poll cycle  
+
+```csharp
+	PollsterBuilder.Create().SetMaxJobsPerPoll(10);
+```
 
 
+to be continued...
