@@ -31,7 +31,7 @@ jobs:
         uses: Nuget/setup-nuget@v1.0.5
 
       - name: Restore nuget packages
-        run: nuget restore 'src/IegTools.FluentPollster/IegTools.FluentPollster.csproj'     
+        run: nuget restore 'IegTools.FluentPollster.sln'     
         
       - name: 'Install dependencies'
         run: dotnet restore  ${{ env.PROJECT_PATH }}
