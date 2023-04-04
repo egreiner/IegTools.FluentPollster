@@ -23,12 +23,11 @@
 
 	  <PackageReleaseNotes>NuGet Package with readme.md and License.txt</PackageReleaseNotes>
 
-	  <PackageTags>polling, scheduler</PackageTags>
+	  <PackageTags>polling, poll</PackageTags>
 		
 	  <NeutralLanguage>en</NeutralLanguage>
 	  <RepositoryType>git</RepositoryType>
 	  <UserSecretsId>940bf605-ef83-43f5-9f75-715291de7535</UserSecretsId>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
   </PropertyGroup>
