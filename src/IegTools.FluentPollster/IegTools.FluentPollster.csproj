@@ -27,7 +27,7 @@
 		  NuGet Package with readme.md
 	  </PackageReleaseNotes>
 
-	  <PackageTags>polling</PackageTags>
+	  <PackageTags>polling, scheduler</PackageTags>
 		
 	  <NeutralLanguage>en</NeutralLanguage>
 	  <RepositoryType>git</RepositoryType>
@@ -47,7 +47,7 @@
 			<Pack>true</Pack>
 			<PackagePath>docs</PackagePath>
 			<Link>README.md</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
@@ -57,7 +57,7 @@
 			<Pack>true</Pack>
 			<PackagePath>docs</PackagePath>
 			<Link>LICENSE.txt</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
