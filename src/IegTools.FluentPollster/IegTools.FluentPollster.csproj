@@ -10,10 +10,11 @@
 		<PackageReadme>https://github.com/egreiner/IegTools.FluentPollster/blob/master/README.md</PackageReadme>
 	    <PackageReadmeFile>docs\README.md</PackageReadmeFile>
 	    <PackageLicenseFile>docs\LICENSE.txt</PackageLicenseFile>
+	    <PackageIcon>docs\icon2.png</PackageIcon>
 
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 
 		<Company>ieg Systems</Company>
 		<Authors>Ing. Ernst Greiner</Authors>
@@ -21,7 +22,7 @@
 
 	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.</Description>
 
-	  <PackageReleaseNotes>Initial GA release</PackageReleaseNotes>
+	  <PackageReleaseNotes>add logo</PackageReleaseNotes>
 
 	  <PackageTags>polling, poll</PackageTags>
 		
@@ -39,16 +40,19 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\..\images\icon2.png">
+			<Pack>True</Pack>
+			<PackagePath>docs</PackagePath>
+			<Link>icon2.png</Link>
+		</None>
+
 		<None Include="..\..\README.md">
 			<Pack>true</Pack>
 			<PackagePath>docs</PackagePath>
 			<Link>README.md</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-
-	<ItemGroup>
+		
 		<None Include="..\..\LICENSE.txt">
 			<Pack>true</Pack>
 			<PackagePath>docs</PackagePath>
