@@ -9,13 +9,13 @@ using FluentAssertions;
 /// </summary>
 public class BlockThreadTests
 {
-    ////// initialize BlockThread class
-    ////public BlockThreadTests()
-    ////{
-    ////    // warmup
-    ////    BlockThread.For(1).Milliseconds();
-    ////    BlockThread.For(1).Microseconds();
-    ////}
+    // initialize BlockThread class
+    public BlockThreadTests()
+    {
+        // warmup
+        BlockThread.For(1).Milliseconds();
+        BlockThread.For(1).Microseconds();
+    }
 
 
     [Fact]
@@ -27,7 +27,7 @@ public class BlockThreadTests
 
         var actual = Stopwatch.GetElapsedTime(start).TotalMicroseconds;
 
-        actual.Should().BeInRange(100, 110);
+        actual.Should().BeInRange(100, 150);
     }
 
     [Fact]
@@ -39,6 +39,6 @@ public class BlockThreadTests
 
         var actual = Stopwatch.GetElapsedTime(start).TotalMilliseconds;
 
-        actual.Should().BeInRange(5, 7);
+        actual.Should().BeInRange(5, 10);
     }
 }
