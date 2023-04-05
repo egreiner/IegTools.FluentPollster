@@ -4,6 +4,10 @@ FluentPollster provides a user-friendly fluent interface for creating easy-to-re
 
 
 ## Why another polling library?
+I need polling for two scenarios
+- get data from the ViessmannApi
+- get Temperatures from 1-Wire Bus DS18B20 sensors
+
 I found that FluentScheduler didn't meet my requirements.  
 I had some ideas and well it's less than 500 loc at the moment, so that's nothing.  
 Hey and it's fun.
@@ -41,16 +45,18 @@ You can add Actions also without any condition,
 build the Pollster and run it in automatic-mode.  
 
 ```csharp
+private IPollster _pollster;
+
 public void AutomaticPolling()
 {
     var counter = 0;
     var uut = PollsterBuilder.Create()
         .AddJob(() => counter++, TimeSpan.FromSeconds(5));
 
-    var pollster = uut.Build();
+    _pollster = uut.Build();
     
     // run automatic (like FluentScheduler does it...)
-    pollster.RunAutomaticEvery(TimeSpan.FromSeconds(10));
+    _pollster.RunAutomaticEvery(TimeSpan.FromSeconds(10));
 }
 ```
 
@@ -91,14 +97,14 @@ so you will be informed about any exceptions thrown in your poll actions.
 And you can set the maximum number of poll tasks that should be executed during one poll cycle.
 
 ```csharp
-    var pollster = PollsterBuilder.Create()
+    _pollster = PollsterBuilder.Create()
         .SetLogger(logger)
         .SetMaxJobsPerPoll(10)
         .AddJob(() => Job1(), TimeSpan.FromSeconds(5));
         .AddJob(() => Job2(), TimeSpan.FromSeconds(10));
         .Build();
 
-    pollster.RunAutomaticEvery(TimeSpan.FromSeconds(1));
+    _pollster.RunAutomaticEvery(TimeSpan.FromSeconds(1));
 ```
 
 ## ExtensionMethods
