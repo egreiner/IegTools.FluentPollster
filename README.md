@@ -54,7 +54,7 @@ public void AutomaticPolling()
 }
 ```
 
-### Multiple intervalls polling job
+### Multiple intervall polling job
 
 You can add any Action with multiple intervall/condition combinations as job to the PollsterBuilder,  
 build the Pollster and run it.  
@@ -62,7 +62,7 @@ build the Pollster and run it.
 ```csharp
 private IPollster _pollster;
 
-public void SimplePolling()
+public void MultipleIntervallPolling()
 {
     var counter = 0;
 
