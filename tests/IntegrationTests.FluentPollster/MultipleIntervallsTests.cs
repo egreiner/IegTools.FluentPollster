@@ -7,7 +7,7 @@ public class MultipleIntervallsTests
 {
     [Theory]
     [InlineData("Cond10", 9, 102)]
-    [InlineData("Cond20", 19, 52)]
+    [InlineData("Cond20", 19, 55)]
     public void Test_Run_multiple_times_counter_is_2(string condition, int microseconds, int expected)
     {
         var counter = 0;

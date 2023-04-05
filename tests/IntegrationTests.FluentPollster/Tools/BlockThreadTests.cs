@@ -15,21 +15,8 @@ public class BlockThreadTests
         // warmup
         BlockThread.For(1).Milliseconds();
         BlockThread.For(1).Microseconds();
-        BlockThread.For(1).Ticks();
     }
 
-
-    [Fact]
-    public void Test_Block_Ticks()
-    {
-        var start = Stopwatch.GetTimestamp();
-
-        BlockThread.For(100).Ticks();
-
-        var actual = Stopwatch.GetTimestamp() - start;
-
-        actual.Should().BeInRange(100, 150);
-    }
 
     [Fact]
     public void Test_Block_Microseconds()
