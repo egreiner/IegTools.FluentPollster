@@ -10,7 +10,7 @@ Hey and it's fun.
 
 
 ## Usage
-To get into the details study the IntegrationTests.  
+To get into the details, explore  the Integration-Tests.  
 
 
 ### Simple polling job
@@ -54,7 +54,35 @@ public void AutomaticPolling()
 }
 ```
 
-### Additional
+### Multiple intervalls polling job
+
+You can add any Action with multiple intervall/condition combinations as job to the PollsterBuilder,  
+build the Pollster and run it.  
+
+```csharp
+private IPollster _pollster;
+
+public void SimplePolling()
+{
+    var counter = 0;
+
+    var intervalls = new List<(TimeSpan, Func<bool>)>
+    {
+        (TimeSpan.FromSeconds(60),  () => Condition1()),
+        (TimeSpan.FromSeconds(120), () => Condition2()),
+    };
+
+    var uut = PollsterBuilder.Create()
+        .AddJob(() => counter++, intervalls);
+
+    var pollster = uut.Build();
+
+    _pollster.Run();
+}
+```
+
+
+## Additional settings
 
 The FluentPollster needs no dependency injection but you can inject an ILogger
 so you will be informed about any exceptions thrown in your poll actions.  
@@ -73,7 +101,7 @@ And you can set the maximum number of poll tasks that should be executed during 
     pollster.RunAutomaticEvery(TimeSpan.FromSeconds(1));
 ```
 
-### ExtensionMethods
+## ExtensionMethods
 
 At the moment there is only one ExtensionMethod, you can use  
   DateTime.Now.IsCurrentMinuteDivisibleBy(...) to force your polling task to run only at 'special' minutes within an hour.
@@ -89,4 +117,4 @@ for further information -> IntegrationsTests...
 
 ```csharp
     IsCurrentMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
-´´´
+```

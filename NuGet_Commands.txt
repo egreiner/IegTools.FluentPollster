@@ -1,4 +1,4 @@
-# create nuget package
+# PowerShell commands to create NuGet packages
 dotnet pack .\src\IegTools.FluentPollster\IegTools.FluentPollster.csproj --configuration Release
 dotnet pack .\src\IegTools.FluentPollster\IegTools.FluentPollster.csproj --include-symbols --configuration Release
 
@@ -6,6 +6,6 @@ dotnet pack .\src\IegTools.FluentPollster\IegTools.FluentPollster.csproj --inclu
 # https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-init 
 nuget init .\src\IegTools.FluentPollster\bin\Release D:\NuGet
 
-# PUSHING
-dotnet nuget push .\src\IegTools.FluentPollster\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k <API_KEY>
+# Push to NuGet.org
+dotnet nuget push .\src\IegTools.FluentPollster\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k < your NuGet API_KEY >
 
