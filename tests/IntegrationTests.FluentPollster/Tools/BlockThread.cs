@@ -9,11 +9,15 @@ using System.Diagnostics;
 /// </summary>
 public sealed class BlockThread
 {
-    private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
+    private readonly long _start;
     private readonly long _blockTime;
 
 
-    private BlockThread(long theBlockTime) => _blockTime = theBlockTime;
+    private BlockThread(long theBlockTime)
+    {
+        _start     = Stopwatch.GetTimestamp();
+        _blockTime = theBlockTime;
+    }
 
 
     /// <summary>
@@ -28,33 +32,28 @@ public sealed class BlockThread
     /// <summary>
     /// Thread is blocked for defined ticks.
     /// </summary>
-    public void Ticks() => BlockForTicks(_blockTime);
+    public void Ticks() =>
+        BlockForTicks(_blockTime);
 
-
+        
     /// <summary>
     /// Thread is blocked for defined microseconds.
     /// </summary>
-    public void Microseconds()
-    {
-        var ticks = _blockTime * Stopwatch.Frequency / 1000_000;
-        BlockForTicks(ticks);
-    }
+    public void Microseconds() =>
+        BlockForTicks(_blockTime * Stopwatch.Frequency / 1_000_000);
 
     /// <summary>
-    /// Thread is blocked for defined microseconds.
+    /// Thread is blocked for defined milliseconds.
     /// </summary>
-    public void Milliseconds()
-    {
-        var ticks = _blockTime * Stopwatch.Frequency / 1000;
-        BlockForTicks(ticks);
-    }
+    public void Milliseconds() =>
+        BlockForTicks(_blockTime * Stopwatch.Frequency / 1_000);
 
 
     private void BlockForTicks(long ticks)
     {
-        while (_stopwatch.ElapsedTicks < ticks)
+        while (Stopwatch.GetTimestamp() - _start < ticks)
         {
-            // waste time with doing nothing
+            // waste time...
         }
     }
 }
