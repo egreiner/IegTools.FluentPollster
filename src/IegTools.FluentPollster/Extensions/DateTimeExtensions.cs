@@ -1,7 +1,10 @@
 ﻿// ReSharper disable once CheckNamespace
 namespace IegTools.FluentPollster;
 
-public static class PollsterExtensions
+/// <summary>
+/// DateTime extension methods
+/// </summary>
+public static class DateTimeExtensions
 {
     /// <summary>
     /// Returns true if the minute and optional minute-offset of the specified date-time
