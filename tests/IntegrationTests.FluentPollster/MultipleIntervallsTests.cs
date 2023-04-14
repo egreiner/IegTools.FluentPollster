@@ -25,7 +25,7 @@ public class MultipleIntervallsTests
 
         for (int i = 0; i < 100; i++)
         {
-            pollster.Run();
+            pollster.Execute();
             BlockThread.For(10).Microseconds();
         }
 

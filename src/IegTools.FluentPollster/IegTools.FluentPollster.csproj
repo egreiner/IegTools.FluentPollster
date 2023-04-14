@@ -13,7 +13,7 @@
 
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 
 		<Company>ieg Systems</Company>
 		<Authors>Ing. Ernst Greiner</Authors>
@@ -21,7 +21,7 @@
 
 	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.</Description>
 
-	  <PackageReleaseNotes>add logo</PackageReleaseNotes>
+	  <PackageReleaseNotes>make Run...() obsolete, use Execute...() instead</PackageReleaseNotes>
 
 	  <PackageTags>polling, poll</PackageTags>
 		

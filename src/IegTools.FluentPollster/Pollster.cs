@@ -23,6 +23,7 @@ public class Pollster : IPollster
     {
         StopAsync().Wait();
         _cts.Dispose();
+        GC.SuppressFinalize(this);
     }
 
 
@@ -33,9 +34,8 @@ public class Pollster : IPollster
         return this;
     }
 
-
     /// <inheritdoc />
-    public virtual IPollster Run()
+    public virtual IPollster Execute()
     {
         lock (_automaticPollingLock)
         {
@@ -50,16 +50,25 @@ public class Pollster : IPollster
     }
 
     /// <inheritdoc />
-    public virtual async Task<IPollster> RunAsync() =>
-        await Task.Run(Run, _cts.Token);
+    public virtual async Task<IPollster> ExecuteAsync() =>
+        await Task.Run(Execute, _cts.Token);
 
 
     /// <inheritdoc />
-    public void RunAutomaticEvery(TimeSpan pollIntervall)
-    {
-        _configuration.AutomaticPollIntervall = pollIntervall;
+    [Obsolete("Use Execute instead")]
+    public virtual IPollster Run() => Execute();
 
-        _timer = new PeriodicTimer(pollIntervall);
+    /// <inheritdoc />
+    [Obsolete("Use ExecuteAsync instead")]
+    public virtual async Task<IPollster> RunAsync() => await ExecuteAsync();
+
+
+    /// <inheritdoc />
+    public void RunAutomaticEvery(TimeSpan pollInterval)
+    {
+        _configuration.AutomaticPollIntervall = pollInterval;
+
+        _timer = new PeriodicTimer(pollInterval);
         _timerTask = RunAutomaticAsync();
     }
 
@@ -81,7 +90,7 @@ public class Pollster : IPollster
         {
             while (_timer != null && await _timer.WaitForNextTickAsync(_cts.Token) && !_cts.Token.IsCancellationRequested)
             {
-                await RunAsync();
+                await ExecuteAsync();
                 _configuration.Logger?.LogTrace("Automatic polling executed");
             }
         }

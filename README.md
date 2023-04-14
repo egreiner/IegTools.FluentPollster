@@ -20,7 +20,7 @@ To get into the details, explore  the Integration-Tests.
 ### Simple polling job
 
 You can add any Action as job to the PollsterBuilder,  
-specify the poll-intervall and the condition,  
+specify the poll-interval and the condition,  
 build the Pollster and run it.  
 
 ```csharp
@@ -34,8 +34,8 @@ public void SimplePolling()
 
     _pollster = uut.Build();
     
-    // runs only once, so when and how you call it belongs to you
-    _pollster.Run();
+    // executes only once, so when and how you call it belongs to you
+    _pollster.Execute();
 }
 ```
 
@@ -60,9 +60,9 @@ public void AutomaticPolling()
 }
 ```
 
-### Multiple intervall polling job
+### Multiple interval polling job
 
-You can add any Action with multiple intervall/condition combinations as job to the PollsterBuilder,  
+You can add any Action with multiple interval/condition combinations as job to the PollsterBuilder,  
 build the Pollster and run it.  
 
 ```csharp
@@ -83,7 +83,7 @@ public void MultipleIntervallPolling()
 
     var pollster = uut.Build();
 
-    _pollster.Run();
+    _pollster.Execute();
 }
 ```
 

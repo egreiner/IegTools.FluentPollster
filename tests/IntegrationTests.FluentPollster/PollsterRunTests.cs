@@ -14,7 +14,7 @@ public class PollsterRunTests
 
         var pollster = uut.Build();
 
-        pollster.Run();
+        pollster.Execute();
 
         counter.Should().Be(1);
     }
@@ -28,7 +28,7 @@ public class PollsterRunTests
 
         var pollster = uut.Build();
 
-        pollster.Run();
+        pollster.Execute();
 
         counter.Should().Be(0);
     }
@@ -45,7 +45,7 @@ public class PollsterRunTests
 
         for (int i = 0; i < 3; i++)
         {
-            pollster.Run();
+            pollster.Execute();
         }
 
         counter.Should().Be(1);
@@ -63,7 +63,7 @@ public class PollsterRunTests
 
         for (int i = 0; i < 20; i++)
         {
-            pollster.Run();
+            pollster.Execute();
         }
 
         counter.Should().Be(20);
@@ -81,7 +81,7 @@ public class PollsterRunTests
 
         for (int i = 0; i < 20; i++)
         {
-            pollster.Run();
+            pollster.Execute();
             BlockThread.For(1).Milliseconds();
         }
 
@@ -98,7 +98,7 @@ public class PollsterRunTests
 
         var pollster = uut.Build();
 
-        var task = () => pollster.Run();
+        var task = () => pollster.Execute();
         task.Should().NotThrow();
     }
 }
