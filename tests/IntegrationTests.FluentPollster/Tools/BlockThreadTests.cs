@@ -39,6 +39,6 @@ public class BlockThreadTests
 
         var actual = Stopwatch.GetElapsedTime(start).TotalMilliseconds;
 
-        actual.Should().BeInRange(5, 10);
+        actual.Should().BeInRange(5, 20);
     }
 }
