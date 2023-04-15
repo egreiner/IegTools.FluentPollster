@@ -29,14 +29,14 @@ public class PollsterBuilder : IPollsterBuilder
     }
 
     /// <inheritdoc />
-    public IPollsterBuilder AddJob(Action action, TimeSpan pollIntervall, string jobName = "") =>
-        AddJob(action, pollIntervall, () => true, jobName);
+    public IPollsterBuilder AddJob(Action action, TimeSpan pollInterval, string jobName = "") =>
+        AddJob(action, pollInterval, () => true, jobName);
 
 
     /// <inheritdoc />
-    public IPollsterBuilder AddJob(Action action, TimeSpan pollIntervall, Func<bool> condition, string jobName = "")
+    public IPollsterBuilder AddJob(Action action, TimeSpan pollInterval, Func<bool> condition, string jobName = "")
     {
-        Configuration.Jobs.Add(new Job(Configuration, action, pollIntervall, condition)
+        Configuration.Jobs.Add(new Job(Configuration, action, pollInterval, condition)
         {
             JobName = jobName,
         });
@@ -44,9 +44,9 @@ public class PollsterBuilder : IPollsterBuilder
     }
 
     /// <inheritdoc />
-    public IPollsterBuilder AddJob(Action action, IList<(TimeSpan pollIntervall, Func<bool> condition)> intervalls, string jobName = "")
+    public IPollsterBuilder AddJob(Action action, IList<(TimeSpan pollInterval, Func<bool> condition)> intervals, string jobName = "")
     {
-        Configuration.Jobs.Add(new Job(Configuration, action, intervalls)
+        Configuration.Jobs.Add(new Job(Configuration, action, intervals)
         {
             JobName = jobName,
         });

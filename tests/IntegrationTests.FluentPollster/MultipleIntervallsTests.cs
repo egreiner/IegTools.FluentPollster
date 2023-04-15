@@ -3,7 +3,7 @@ namespace IntegrationTests.FluentPollster;
 using FluentAssertions;
 using Tools;
 
-public class MultipleIntervallsTests
+public class MultipleIntervalsTests
 {
     [Theory]
     [InlineData("Cond10", 9, 102)]
@@ -12,14 +12,14 @@ public class MultipleIntervallsTests
     {
         var counter = 0;
 
-        var intervalls = new List<(TimeSpan, Func<bool>)>
+        var intervals = new List<(TimeSpan, Func<bool>)>
         {
             (TimeSpan.FromMicroseconds(microseconds), () => condition == "Cond10"),
             (TimeSpan.FromMicroseconds(microseconds), () => condition == "Cond20"),
         };
 
         var uut = PollsterBuilder.Create()
-            .AddJob(() => counter++, intervalls);
+            .AddJob(() => counter++, intervals);
 
         var pollster = uut.Build();
 

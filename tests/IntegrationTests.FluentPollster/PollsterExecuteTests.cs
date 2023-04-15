@@ -3,10 +3,10 @@ namespace IntegrationTests.FluentPollster;
 using FluentAssertions;
 using Tools;
 
-public class PollsterRunTests
+public class PollsterExecuteTests
 {
     [Fact]
-    public void Test_Run_once()
+    public void Test_Execute_once()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create()
@@ -20,7 +20,7 @@ public class PollsterRunTests
     }
 
     [Fact]
-    public void Test_Run_job_condition_is_false()
+    public void Test_Execute_job_condition_is_false()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create()
@@ -34,7 +34,7 @@ public class PollsterRunTests
     }
 
     [Fact]
-    public void Test_Run_multiple_times_counter_is_1()
+    public void Test_Execute_multiple_times_counter_is_1()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
@@ -52,7 +52,7 @@ public class PollsterRunTests
     }
 
     [Fact]
-    public void Test_Run_multiple_times_counter_is_20()
+    public void Test_Execute_multiple_times_counter_is_20()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
@@ -70,7 +70,7 @@ public class PollsterRunTests
     }
     
     [Fact]
-    public void Test_Run_multiple_times_counter_is_2()
+    public void Test_Execute_multiple_times_counter_is_2()
     {
         var counter = 0;
         var uut = PollsterBuilder.Create();
@@ -85,11 +85,11 @@ public class PollsterRunTests
             BlockThread.For(1).Milliseconds();
         }
 
-        counter.Should().BeLessThan(10);
+        counter.Should().BeInRange(2, 10);
     }
-
+    
     [Fact]
-    public void Test_Run_with_failing_Action()
+    public void Test_Execute_with_failing_Action()
     {
         var uut = PollsterBuilder.Create();
 

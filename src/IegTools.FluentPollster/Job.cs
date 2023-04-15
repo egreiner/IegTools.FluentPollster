@@ -10,65 +10,100 @@ public class Job
     private readonly PollsterConfiguration _configuration;
 
     /// <summary>
-    /// Define a poll task with a single intervall
+    /// Define a poll task with a single interval
     /// </summary>
     /// <param name="configuration">The pollster configuration</param>
     /// <param name="action">The action that should be executed when it's time to poll</param>
-    /// <param name="pollIntervall">The poll intervall</param>
+    /// <param name="pollInterval">The poll interval</param>
     /// <param name="condition">The condition when the poll is enabled</param>
-    public Job(PollsterConfiguration configuration, Action action, TimeSpan pollIntervall, Func<bool> condition)
+    public Job(PollsterConfiguration configuration, Action action, TimeSpan pollInterval, Func<bool> condition)
     {
         _configuration = configuration;
         JobAction      = action;
-        Intervalls     = new[] { (pollIntervall, condition) };
+        Intervals     = new[] { (pollInterval, condition) };
     }
 
     /// <summary>
-    /// Define a pool task with multiple intervalls
+    /// Define a pool task with multiple intervals
     /// </summary>
     /// <param name="configuration">The pollster configuration</param>
     /// <param name="action">The action that should be executed when it's time to poll</param>
-    /// <param name="intervalls">The poll intervalls with there conditions</param>
-    public Job(PollsterConfiguration configuration, Action action, IList<(TimeSpan pollIntervall, Func<bool> condition)> intervalls)
+    /// <param name="intervals">The poll intervals with there conditions</param>
+    public Job(PollsterConfiguration configuration, Action action, IList<(TimeSpan pollInterval, Func<bool> condition)> intervals)
     {
         _configuration = configuration;
         JobAction      = action;
-        Intervalls     = intervalls;
+        Intervals     = intervals;
     }
 
 
+    /// <summary>
+    /// The name of the job
+    /// </summary>
     public string JobName   { get; init; } = string.Empty;
 
+    /// <summary>
+    /// The action that should be executed when it's time to poll
+    /// </summary>
     public Action JobAction { get; }
 
-    public IList<(TimeSpan pollIntervall, Func<bool> condition)> Intervalls { get; }
+    /// <summary>
+    /// The poll intervals with there conditions
+    /// </summary>
+    public IList<(TimeSpan pollInterval, Func<bool> condition)> Intervals { get; }
 
-
+    /// <summary>
+    /// Last time the job was executed
+    /// </summary>
     public DateTime   LastPolledTime   { get; set; } = DateTime.MinValue;
+    
+    /// <summary>
+    /// Last poll was successful
+    /// </summary>
     public bool       LastPollResult   { get; set; }
+
+    /// <summary>
+    /// Last poll error
+    /// </summary>
     public Exception? LastPollError    { get; set; }
+    
+    /// <summary>
+    /// Last poll duration
+    /// </summary>
     public TimeSpan   LastPollDuration { get; set; }
 
+    /// <summary>
+    /// The number of polls that have been executed
+    /// </summary>
     public int PollCount { get; set; }
 
 
+    /// <summary>
+    /// Returns true if any job conditions are met
+    /// </summary>
     public bool JobConditionValidated() =>
-        Intervalls.Any(x => x.condition.Invoke());
-
-    public bool PollIntervallExpired() =>
-        DateTime.Now >= LastPolledTime + GetActivePollIntervall();
-
-    public TimeSpan GetActivePollIntervall() => 
-        Intervalls.OrderBy(x => x.pollIntervall)
-            .Where(x => x.condition.Invoke())
-            .Select(x => x.pollIntervall).FirstOrDefault();
+        Intervals.Any(x => x.condition.Invoke());
 
     /// <summary>
-    /// Job Action will be executed if job-conditions are met and the poll-intervall is expired
+    /// Returns true if the poll-interval is expired
+    /// </summary>
+    public bool PollIntervalExpired() =>
+        DateTime.Now >= LastPolledTime + GetActivePollInterval();
+
+    /// <summary>
+    /// Returns the first poll-interval that is valid
+    /// </summary>
+    public TimeSpan GetActivePollInterval() => 
+        Intervals.OrderBy(x => x.pollInterval)
+            .Where(x => x.condition.Invoke())
+            .Select(x => x.pollInterval).FirstOrDefault();
+
+    /// <summary>
+    /// Job Action will be executed if job-conditions are met and the poll-interval is expired
     /// </summary>
     public void ExecuteJobAction()
     {
-        ExecuteJobAction(JobConditionValidated() && PollIntervallExpired());
+        ExecuteJobAction(JobConditionValidated() && PollIntervalExpired());
     }
 
     /// <summary>

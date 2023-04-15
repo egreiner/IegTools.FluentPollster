@@ -27,27 +27,27 @@ public interface IPollsterBuilder
     /// Adds a simple job to the pollster-configuration
     /// </summary>
     /// <param name="action">The action that should be executed</param>
-    /// <param name="pollIntervall">The poll intervall</param>
+    /// <param name="pollInterval">The poll interval</param>
     /// <param name="jobName">The job name</param>
-    IPollsterBuilder AddJob(Action action, TimeSpan pollIntervall, string jobName = "");
+    IPollsterBuilder AddJob(Action action, TimeSpan pollInterval, string jobName = "");
 
     /// <summary>
     /// Adds a simple job to the pollster-configuration
     /// </summary>
     /// <param name="action">The action that should be executed</param>
-    /// <param name="pollIntervall">The poll intervall</param>
+    /// <param name="pollInterval">The poll interval</param>
     /// <param name="condition">The condition when the execution of the action is allowed</param>
     /// <param name="jobName">The job name</param>
-    IPollsterBuilder AddJob(Action action, TimeSpan pollIntervall, Func<bool> condition, string jobName = "");
+    IPollsterBuilder AddJob(Action action, TimeSpan pollInterval, Func<bool> condition, string jobName = "");
 
     /// <summary>
     /// Adds a job to the pollster-configuration
     /// with multiple
     /// </summary>
     /// <param name="action">The action that should be executed</param>
-    /// <param name="intervalls">The list of poll intervalls with there conditions</param>
+    /// <param name="intervals">The list of poll intervals with there conditions</param>
     /// <param name="jobName">The job name</param>
-    IPollsterBuilder AddJob(Action action, IList<(TimeSpan pollIntervall, Func<bool> condition)> intervalls, string jobName = "");
+    IPollsterBuilder AddJob(Action action, IList<(TimeSpan pollInterval, Func<bool> condition)> intervals, string jobName = "");
 
     /// <summary>
     /// Injects an logger

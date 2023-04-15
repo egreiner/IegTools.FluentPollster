@@ -1,4 +1,7 @@
-﻿namespace IegTools.FluentPollster;
+﻿// compile is deactivated
+// there is no PeriodicTimer for NetStandard2.0
+
+namespace IegTools.FluentPollster;
 
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -12,14 +15,16 @@ public class Pollster : IPollster
     private readonly object _automaticPollingLock = new();
     private PollsterConfiguration _configuration  = new();
 
-    private Timer _timer;
+    private PeriodicTimer? _timer;
+    private Task<IPollster>? _timerTask;
+
     
     /// <summary>
     /// Stops the execution of the jobs and disposes all used resources
     /// </summary>
     public void Dispose()
     {
-        Stop();
+        StopAsync().Wait();
         _cts.Dispose();
         GC.SuppressFinalize(this);
     }
@@ -50,36 +55,45 @@ public class Pollster : IPollster
     /// <inheritdoc />
     public virtual async Task<IPollster> ExecuteAsync() =>
         await Task.Run(Execute, _cts.Token);
-    
-    /// <inheritdoc />
-    public void RunAutomaticEvery(TimeSpan pollInterval) =>
-        RunAutomaticEvery(pollInterval, TimeSpan.Zero);
+
 
     /// <inheritdoc />
-    public void RunAutomaticEvery(TimeSpan pollInterval, TimeSpan startDelay)
+    [Obsolete("Use Execute instead")]
+    public virtual IPollster Run() => Execute();
+
+    /// <inheritdoc />
+    [Obsolete("Use ExecuteAsync instead")]
+    public virtual async Task<IPollster> RunAsync() => await ExecuteAsync();
+
+
+    /// <inheritdoc />
+    public void RunAutomaticEvery(TimeSpan pollInterval)
     {
         _configuration.AutomaticPollInterval = pollInterval;
-        _configuration.StartDelay = startDelay;
 
-        _timer = new Timer(TimerExecute, null, _configuration.StartDelay, _configuration.AutomaticPollInterval);
+        _timer = new PeriodicTimer(pollInterval);
+        _timerTask = RunAutomaticAsync();
     }
 
     /// <inheritdoc />
-    public void Stop()
+    public async Task StopAsync()
     {
+        if (_timerTask == null) return;
+
         _configuration.Logger?.LogTrace("Automatic polling stop initiated");
-        _cts?.Cancel();
+        _cts.Cancel();
+        await _timerTask;
         _timer?.Dispose();
-        _timer = null;
+        _timerTask.Dispose();
     }
 
-    private void TimerExecute(object obj)
+    private async Task<IPollster> RunAutomaticAsync()
     {
         try
         {
-            if (_timer != null && !_cts.Token.IsCancellationRequested)
+            while (_timer != null && await _timer.WaitForNextTickAsync(_cts.Token) && !_cts.Token.IsCancellationRequested)
             {
-                Execute();
+                await ExecuteAsync();
                 _configuration.Logger?.LogTrace("Automatic polling executed");
             }
         }
@@ -87,5 +101,6 @@ public class Pollster : IPollster
         {
             _configuration.Logger?.LogTrace(e, "Automatic polling stopped (operation canceled)");
         }
+        return this;
     }
 }

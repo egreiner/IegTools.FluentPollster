@@ -1,11 +1,12 @@
 # IegTools.FluentPollster
 
 FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  
+The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .NET Framework).
 
 
 ## Why another polling library?
 I need polling for two scenarios
-- get data from the ViessmannApi
+- get data from an third party Api
 - get Temperatures from 1-Wire Bus DS18B20 sensors
 
 I found that FluentScheduler didn't meet my requirements.  
@@ -68,18 +69,18 @@ build the Pollster and run it.
 ```csharp
 private IPollster _pollster;
 
-public void MultipleIntervallPolling()
+public void MultipleIntervalPolling()
 {
     var counter = 0;
 
-    var intervalls = new List<(TimeSpan, Func<bool>)>
+    var intervals = new List<(TimeSpan, Func<bool>)>
     {
         (TimeSpan.FromSeconds(60),  () => Condition1()),
         (TimeSpan.FromSeconds(120), () => Condition2()),
     };
 
     var uut = PollsterBuilder.Create()
-        .AddJob(() => counter++, intervalls);
+        .AddJob(() => counter++, intervals);
 
     var pollster = uut.Build();
 

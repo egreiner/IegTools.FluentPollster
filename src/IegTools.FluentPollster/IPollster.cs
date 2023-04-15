@@ -15,30 +15,26 @@ public interface IPollster: IDisposable
     /// Async Executes all specified jobs once
     /// </summary>
     Task<IPollster> ExecuteAsync();
-
+    
     /// <summary>
-    /// Executes all specified jobs once
+    /// Executes all specified jobs automatically in an Background Task
+    /// with the specified poll interval, until it is stopped.
     /// </summary>
-    [Obsolete("Use Execute instead")]
-    IPollster Run();
-
-    /// <summary>
-    /// Async Executes all specified jobs once
-    /// </summary>
-    [Obsolete("Use ExecuteAsync instead")]
-    Task<IPollster> RunAsync();
+    /// <param name="pollInterval">The poll interval</param>
+    void RunAutomaticEvery(TimeSpan pollInterval);
 
     /// <summary>
     /// Executes all specified jobs automatically in an Background Task
-    /// with the specified poll intervall, until it is stopped.
+    /// with the specified poll interval, until it is stopped.
     /// </summary>
-    /// <param name="pollInterval">The poll intervall</param>
-    void RunAutomaticEvery(TimeSpan pollInterval);
+    /// <param name="pollInterval">The poll interval</param>
+    /// <param name="delay">The delay before the poll interval starts</param>
+    void RunAutomaticEvery(TimeSpan pollInterval, TimeSpan delay);
 
     /// <summary>
     /// Stops the execution of all specified jobs
     /// </summary>
-    Task StopAsync();
+    void Stop();
 
     /// <summary>
     /// Set the pollster-configuration

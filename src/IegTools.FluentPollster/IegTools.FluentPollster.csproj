@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	  <TargetFramework>net7.0</TargetFramework>
+	  <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 
@@ -13,7 +13,7 @@
 
 		<PackageId>IegTools.FluentPollster</PackageId>
 		<Title>IegTools.FluentPollster</Title>
-		<Version>1.0.2</Version>
+		<Version>1.1.0-rc.1</Version>
 
 		<Company>ieg Systems</Company>
 		<Authors>Ing. Ernst Greiner</Authors>
@@ -21,7 +21,7 @@
 
 	  <Description>FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.</Description>
 
-	  <PackageReleaseNotes>make Run...() obsolete, use Execute...() instead</PackageReleaseNotes>
+	  <PackageReleaseNotes>switched to netstandard2.0, replace Run...() with Execute...()</PackageReleaseNotes>
 
 	  <PackageTags>polling, poll</PackageTags>
 		
@@ -58,5 +58,9 @@
 			<Link>LICENSE.txt</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		
+		<Compile Remove="PollsterPeriodicTimer.cs" />
+		
+		<None Include="PollsterPeriodicTimer.cs" />
 	</ItemGroup>
 </Project>
