@@ -131,3 +131,13 @@ minute 0, 15, 30 and 45
 minute 1, 16, 31 and 46  
 
 For additional details, please refer to IntegrationTests.
+
+
+# Breaking Changes
+## v1 to v2
+- switched from net7.0 to netstandard2.0 (there is no PeriodicTimer in netstandard2.0...)
+- rename method poller.Run...() to poller.Execute...()
+- rename method poller.StopAsync() to poller.Stop()
+- rename ExtensionMethod IsCurrentMinuteDivisibleBy(...) to IsMinuteDivisibleBy(...)
+- change behaviour of ExtensionMethod IsMinuteDivisibleBy(...) offsetMinute  
+  from (time.Minute + offsetMinute) to (time.Minute - offsetMinute)
