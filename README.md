@@ -91,10 +91,13 @@ public void MultipleIntervalPolling()
 
 ## Additional settings
 
-The FluentPollster needs no dependency injection but you can inject an ILogger
-so you will be informed about any exceptions thrown in your poll actions.  
-(all other important events are logged as 'Trace' at the moment)  
+### Logger
+The FluentPollster does not require dependency injection,
+however, it provides the option to inject an ILogger so that you can receive notifications about
+any exceptions that may occur during your poll actions.   
+Additionally, all other significant events are currently being logged as 'Trace'.
 
+### Maximum tasks per poll cycle
 And you can set the maximum number of poll tasks that should be executed during one poll cycle.
 
 ```csharp
@@ -110,18 +113,21 @@ And you can set the maximum number of poll tasks that should be executed during 
 
 ## ExtensionMethods
 
-At the moment there is only one ExtensionMethod, you can use  
-  DateTime.Now.IsCurrentMinuteDivisibleBy(...) to force your polling task to run only at 'special' minutes within an hour.
-
-Example:  
-    Use DateTime.Now.IsCurrentMinuteDivisibleBy(5) as condition and your action will be called only in 
-    minute 0, 5, 10, 15 and so on  
-or:  
-    Use DateTime.Now.IsCurrentMinuteDivisibleBy(15) as condition and your action will be called only in 
-    minute 0, 15, 30 and 45  
-
-for further information -> IntegrationsTests...
+### IsMinuteDivisibleBy
 
 ```csharp
-    IsCurrentMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
+    // ensures the polling task executes solely at specific minutes within an hour.
+    IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
 ```
+
+Examples:  
+- Use `DateTime.Now.IsMinuteDivisibleBy(5)` as condition and your action will be called only in 
+minute 0, 5, 10, 15...  
+
+- Use `DateTime.Now.IsMinuteDivisibleBy(15)` as condition and your action will be called only in 
+minute 0, 15, 30 and 45  
+
+- Use `DateTime.Now.IsMinuteDivisibleBy(15, 1)` as condition and your action will be called only in 
+minute 1, 16, 31 and 46  
+
+For additional details, please refer to IntegrationTests.

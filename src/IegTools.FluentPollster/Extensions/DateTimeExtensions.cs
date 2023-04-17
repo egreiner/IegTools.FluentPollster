@@ -13,8 +13,6 @@ public static class DateTimeExtensions
     /// <param name="time">The date-time</param>
     /// <param name="everyMinutes">Every x minutes</param>
     /// <param name="offsetMinute">The offset minute</param>
-    public static bool IsCurrentMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0) => 
-        everyMinutes <= 0 
-        ? false
-        : (time.Minute + offsetMinute) % everyMinutes == 0;
+    public static bool IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0) => 
+        everyMinutes > 0 && (time.Minute - offsetMinute) % everyMinutes == 0;
 }

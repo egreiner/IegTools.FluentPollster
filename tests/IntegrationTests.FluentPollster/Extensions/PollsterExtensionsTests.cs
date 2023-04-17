@@ -7,7 +7,7 @@ public class PollsterExtensionsTests
     [Fact]
     public void Test_Is()
     {
-        var actual = new DateTime(2023, 1, 1, 10, 00, 00).IsCurrentMinuteDivisibleBy(15);
+        var actual = new DateTime(2023, 1, 1, 10, 00, 00).IsMinuteDivisibleBy(15);
 
         actual.Should().BeTrue();
     }
@@ -22,7 +22,7 @@ public class PollsterExtensionsTests
     [InlineData(6, 3)]
     public void Test_IsCurrentMinuteDivisibleBy_true(int minute, int everyMinute)
     {
-        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsCurrentMinuteDivisibleBy(everyMinute);
+        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsMinuteDivisibleBy(everyMinute);
 
         actual.Should().BeTrue();
     }
@@ -34,18 +34,18 @@ public class PollsterExtensionsTests
     [InlineData(1, 3)]
     public void Test_IsCurrentMinuteDivisibleBy_false(int minute, int everyMinute)
     {
-        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsCurrentMinuteDivisibleBy(everyMinute);
+        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsMinuteDivisibleBy(everyMinute);
 
         actual.Should().BeFalse();
     }
 
     [Theory]
     [InlineData(15, 0, true)]
-    [InlineData(14, 1, true)]
-    [InlineData(16, -1, true)]
+    [InlineData(16, 1, true)]
+    [InlineData(14, -1, true)]
     public void Test_IsCurrentMinuteDivisibleBy_offset_false(int minute, int offset, bool expected)
     {
-        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsCurrentMinuteDivisibleBy(15, offset);
+        var actual = new DateTime(2023, 1, 1, 10, minute, 00).IsMinuteDivisibleBy(15, offset);
 
         actual.Should().Be(expected);
     }
