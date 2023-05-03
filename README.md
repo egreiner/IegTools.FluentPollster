@@ -15,7 +15,7 @@ The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .
 ## Why another polling library?
 I need polling for two scenarios
 - get data from an third party Api
-- get Temperatures from 1-Wire Bus DS18B20 sensors
+- get data from 1-Wire Bus DS18B20 Temperature-sensors
 
 I found that FluentScheduler didn't meet my requirements.  
 I had some ideas and well it's less than 500 loc at the moment, so that's nothing.  
@@ -128,8 +128,9 @@ And you can set the maximum number of poll tasks that should be executed during 
 ### IsMinuteDivisibleBy
 
 ```csharp
-    // ensures the polling task executes solely at specific minutes within an hour.
-    IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
+    // Returns true if the minute and optional minute-offset of the specified date-time
+    // is divisible by everyMinutes with remainder is 0
+    public static bool IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
 ```
 
 Examples:  
@@ -141,6 +142,21 @@ minute 0, 15, 30 and 45
 
 - Use `DateTime.Now.IsMinuteDivisibleBy(15, 1)` as condition and your action will be called only in 
 minute 1, 16, 31 and 46  
+
+
+### IsDivisibleBySeconds
+
+```csharp
+    // Returns true if the combined seconds
+    // (derived from the minute and second values of the specified date-time, adjusted by an optional seconds-offset)
+    // are divisible by the provided secondsDivisor (with a remainder of 0) within a span of 10 seconds.
+    public static bool IsDivisibleBySeconds(this DateTime time, int secondsDivisor, int offsetSeconds = 0)
+```
+
+Examples:
+- Use `DateTime.Now.IsDivisibleBySeconds(150)` as condition and your action will be called only in
+  minute 0, 2.5, 5, 7.5...
+
 
 For additional details, please refer to IntegrationTests.
 

@@ -93,12 +93,13 @@ public class PollsterExecuteTests
     {
         var uut = PollsterBuilder.Create();
 
-        Action failingAction = () => throw new Exception("Test exception");
-        uut.AddJob(failingAction, TimeSpan.FromMicroseconds(10));
+        uut.AddJob(throwException, TimeSpan.FromMicroseconds(10));
 
         var pollster = uut.Build();
 
         var task = () => pollster.Execute();
         task.Should().NotThrow();
+        
+        void throwException() => throw new Exception("Test exception");
     }
 }
