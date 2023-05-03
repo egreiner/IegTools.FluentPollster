@@ -128,8 +128,8 @@ And you can set the maximum number of poll tasks that should be executed during 
 ### IsMinuteDivisibleBy
 
 ```csharp
-    // Returns true if the minute and optional minute-offset of the specified date-time
-    // is divisible by everyMinutes with remainder is 0
+    // Returns true if the minute and optional minute-offset of the specified date-time  
+    // is divisible by everyMinutes with remainder is 0  
     public static bool IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0)
 ```
 
@@ -147,15 +147,15 @@ minute 1, 16, 31 and 46
 ### IsDivisibleBySeconds
 
 ```csharp
-    // Returns true if the combined seconds
-    // (derived from the minute and second values of the specified date-time, adjusted by an optional seconds-offset)
-    // are divisible by the provided secondsDivisor (with a remainder of 0) within a span of 10 seconds.
+    // Returns true if the combined seconds  
+    // (derived from the minute and second values of the specified date-time, adjusted by an optional seconds-offset)  
+    // are divisible by the provided secondsDivisor (with a remainder of 0) within a span of 10 seconds.  
     public static bool IsDivisibleBySeconds(this DateTime time, int secondsDivisor, int offsetSeconds = 0)
 ```
 
 Examples:
 - Use `DateTime.Now.IsDivisibleBySeconds(150)` as condition and your action will be called only in
-  minute 0, 2.5, 5, 7.5...
+  minute 0, 2.5, 5, 7.5...  
 
 
 For additional details, please refer to IntegrationTests.
