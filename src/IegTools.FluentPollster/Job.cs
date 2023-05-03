@@ -129,7 +129,8 @@ public class Job
         {
             LastPollError = e;
             LastPollResult = false;
-            _configuration.Logger?.LogError(e, $"Error during execution of Job '{JobName}'");
+            var jobName = JobName?.Length > 0 ? JobName : JobAction.Method.Name;
+            _configuration.Logger?.LogError(e, $"Error during execution of Job '{jobName}'");
         }
         finally
         {
