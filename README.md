@@ -5,6 +5,7 @@ The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .
 
 ## Topics
 [Why another polling library?](#why-another-polling-library?)    
+[Installation](#installation)  
 [Usage](#usage)  
 [Additional settings](#additional-settings)   
 [ExtensionMethods](#extensionmethods)  
@@ -19,6 +20,10 @@ I need polling for two scenarios
 I found that FluentScheduler didn't meet my requirements.  
 I had some ideas and well it's less than 500 loc at the moment, so that's nothing.  
 Hey and it's fun.
+
+
+## Installation
+The library is available as a [NuGet package](https://www.nuget.org/packages/IegTools.FluentPollster/).
 
 
 ## Usage
