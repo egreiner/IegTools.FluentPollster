@@ -1,7 +1,7 @@
 # IegTools.FluentPollster
 
 FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  
-The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .NET Framework).
+The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .NET Framework).  
 
 ## Topics
 [Why another polling library?](#why-another-polling-library?)    
