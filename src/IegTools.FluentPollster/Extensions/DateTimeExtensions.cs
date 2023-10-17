@@ -13,9 +13,20 @@ public static class DateTimeExtensions
     /// <param name="time">The date-time</param>
     /// <param name="everyMinutes">Every x minutes</param>
     /// <param name="offsetMinute">The offset minute</param>
+    [Obsolete("Use IsDivisibleByMinutes instead")]
     public static bool IsMinuteDivisibleBy(this DateTime time, int everyMinutes, int offsetMinute = 0) => 
-        everyMinutes > 0 && (time.Minute - offsetMinute) % everyMinutes == 0;
+        time.IsDivisibleByMinutes(everyMinutes, offsetMinute);
     
+    /// <summary>
+    /// Returns true if the minute and optional minute-offset of the specified date-time
+    /// is divisible by everyMinutes with remainder is 0
+    /// </summary>
+    /// <param name="time">The date-time</param>
+    /// <param name="everyMinutes">Every x minutes</param>
+    /// <param name="offsetMinute">The offset minute</param>
+    public static bool IsDivisibleByMinutes(this DateTime time, int everyMinutes, int offsetMinute = 0) =>
+        everyMinutes > 0 && (time.Minute - offsetMinute) % everyMinutes == 0;
+
     /// <summary>
     /// Returns true if the combined seconds
     /// (derived from the minute and second values of the specified date-time, adjusted by an optional seconds-offset)
