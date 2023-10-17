@@ -1,7 +1,7 @@
 # IegTools.FluentPollster
 
 FluentPollster provides a user-friendly fluent interface for creating easy-to-read polling tasks.  
-The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET Core and .NET Framework).  
+The library is written in C# 11.0 and targets .NET Standard 2.0 (.NET and .NET Framework).  
 
 ## Topics
 [Why another polling library?](#why-another-polling-library?)    
@@ -27,7 +27,7 @@ The library is available as a [NuGet package](https://www.nuget.org/packages/Ieg
 
 
 ## Usage
-To get into the details, explore  the Integration-Tests.  
+To get into the details, explore the Integration-Tests.  
 
 
 ### Simple polling job
@@ -162,6 +162,10 @@ For additional details, please refer to IntegrationTests.
 
 
 # Breaking Changes
+## v2.1 to v2.2
+- ExtensionMethod .IsMinuteDivisibleBy(...) is now obsolete and will be deleted in future versions
+  use method .IsDivisibleByMinutes(...) instead
+
 ## v1 to v2
 - switched from net7.0 to netstandard2.0 (there is no PeriodicTimer in netstandard2.0...)
 - rename method poller.Run...() to poller.Execute...()
