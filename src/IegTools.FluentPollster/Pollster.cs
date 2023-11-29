@@ -52,11 +52,11 @@ public class Pollster : IPollster
         await Task.Run(Execute, _cts.Token);
     
     /// <inheritdoc />
-    public void RunAutomaticEvery(TimeSpan pollInterval) =>
-        RunAutomaticEvery(pollInterval, TimeSpan.Zero);
+    public void ExecuteAsBackgroundTaskEvery(TimeSpan pollInterval) =>
+        this.ExecuteAsBackgroundTaskEvery(pollInterval, TimeSpan.Zero);
 
     /// <inheritdoc />
-    public void RunAutomaticEvery(TimeSpan pollInterval, TimeSpan startDelay)
+    public void ExecuteAsBackgroundTaskEvery(TimeSpan pollInterval, TimeSpan startDelay)
     {
         _configuration.AutomaticPollInterval = pollInterval;
         _configuration.StartDelay = startDelay;

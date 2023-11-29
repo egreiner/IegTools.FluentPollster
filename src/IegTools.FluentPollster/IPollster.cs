@@ -21,7 +21,7 @@ public interface IPollster: IDisposable
     /// with the specified poll interval, until it is stopped.
     /// </summary>
     /// <param name="pollInterval">The poll interval</param>
-    void RunAutomaticEvery(TimeSpan pollInterval);
+    void ExecuteAsBackgroundTaskEvery(TimeSpan pollInterval);
 
     /// <summary>
     /// Executes all specified jobs automatically in an Background Task
@@ -29,7 +29,7 @@ public interface IPollster: IDisposable
     /// </summary>
     /// <param name="pollInterval">The poll interval</param>
     /// <param name="delay">The delay before the poll interval starts</param>
-    void RunAutomaticEvery(TimeSpan pollInterval, TimeSpan delay);
+    void ExecuteAsBackgroundTaskEvery(TimeSpan pollInterval, TimeSpan delay);
 
     /// <summary>
     /// Stops the execution of all specified jobs

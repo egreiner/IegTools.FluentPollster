@@ -55,7 +55,7 @@ public void SimplePolling()
 ### Execute the pollster automatically every x minutes, seconds,...
 
 You can add Actions also without any condition,  
-build the Pollster and run it in automatic-mode.  
+build the Pollster and run it in automatic-mode as background task.  
 
 ```csharp
 private IPollster _pollster;
@@ -68,8 +68,8 @@ public void AutomaticPolling()
 
     _pollster = uut.Build();
     
-    // run automatic (like FluentScheduler does it...)
-    _pollster.RunAutomaticEvery(TimeSpan.FromSeconds(10));
+    // runs automatic as background task (like FluentScheduler does it...)
+    _pollster.ExecuteAsBackgroundTaskEvery(TimeSpan.FromSeconds(10));
 }
 ```
 
@@ -162,6 +162,11 @@ For additional details, please refer to IntegrationTests.
 
 
 # Breaking Changes
+## preparing for v2.2 to v3.0
+- ExtensionMethod .IsMinuteDivisibleBy(...) is deleted use method .IsDivisibleByMinutes(...) instead
+- renamed Pollster.RunAutomaticEvery(...) to Pollster.ExecuteAsBackgroundTaskEvery(...)
+
+
 ## v2.1 to v2.2
 - ExtensionMethod .IsMinuteDivisibleBy(...) is now obsolete and will be deleted in future versions
   use method .IsDivisibleByMinutes(...) instead

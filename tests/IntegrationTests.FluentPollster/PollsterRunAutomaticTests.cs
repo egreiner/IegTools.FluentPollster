@@ -15,7 +15,7 @@ public class PollsterRunAutomaticTests
 
         var pollster = uut.Build();
 
-        var task = () => pollster.RunAutomaticEvery(TimeSpan.FromMilliseconds(10));
+        var task = () => pollster.ExecuteAsBackgroundTaskEvery(TimeSpan.FromMilliseconds(10));
         task.Should().NotThrow();
 
         pollster.Dispose();
@@ -30,7 +30,7 @@ public class PollsterRunAutomaticTests
         var pollster = PollsterBuilder.Create()
             .AddJob(() => counter++, TimeSpan.FromMilliseconds(9)).Build();
 
-        pollster.RunAutomaticEvery(TimeSpan.FromMilliseconds(10));
+        pollster.ExecuteAsBackgroundTaskEvery(TimeSpan.FromMilliseconds(10));
 
         BlockThread.For(50).Milliseconds();
 
@@ -50,7 +50,7 @@ public class PollsterRunAutomaticTests
 
         var pollster = uut.Build();
 
-        pollster.RunAutomaticEvery(TimeSpan.FromMilliseconds(10));
+        pollster.ExecuteAsBackgroundTaskEvery(TimeSpan.FromMilliseconds(10));
 
         for (int i = 0; i < 20; i++)
         {

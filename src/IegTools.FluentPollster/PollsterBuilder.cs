@@ -28,6 +28,7 @@ public class PollsterBuilder : IPollsterBuilder
         return new TPollster().SetConfiguration(Configuration);
     }
 
+
     /// <inheritdoc />
     public IPollsterBuilder AddJob(Action action, TimeSpan pollInterval, string jobName = "") =>
         AddJob(action, pollInterval, () => true, jobName);
@@ -44,6 +45,7 @@ public class PollsterBuilder : IPollsterBuilder
     }
 
     /// <inheritdoc />
+    [Obsolete("Use new AddPollInterval method instead.")]
     public IPollsterBuilder AddJob(Action action, IList<(TimeSpan pollInterval, Func<bool> condition)> intervals, string jobName = "")
     {
         Configuration.Jobs.Add(new Job(Configuration, action, intervals)
